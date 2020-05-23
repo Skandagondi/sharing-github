@@ -1,0 +1,10 @@
+pip install wordcloud
+from wordcloud import WordCloud 
+from wordcloud import STOPWORDS 
+import matplotlib.pyplot as plt 
+fh=open("C:/Users/SKANDA GONDI//Downloads/test.txt","r",encoding="utf8") 
+text=fh.read() 
+wordcloud = WordCloud(background_color="WHITE",stopwords = set(STOPWORDS)).generate(text) 
+plt.imshow(wordcloud) 
+plt.axis("off") 
+plt.show()
