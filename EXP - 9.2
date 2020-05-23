@@ -1,0 +1,21 @@
+pip install vaderSentiment
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+import pandas as pd 
+fh=open("C:/Users/SKANDA GONDI/Downloads/test.txt","r",encoding="utf8") 
+text=fh.read()
+sid_obj = SentimentIntensityAnalyzer()
+sentiment_dict = sid_obj.polarity_scores(text) 
+print("Overall sentiment dictionary is : ", sentiment_dict) 
+print("Chat history was rated as ", sentiment_dict['neg']*100, "% Negative") 
+print("Chat history was rated as ", sentiment_dict['neu']*100, "% Neutral") 
+print("Chat history was rated as ", sentiment_dict['pos']*100, "% Positive") 
+print(sentiment_dict) 
+df=pd.DataFrame(sentiment_dict,columns =['neg', 'neu', 'pos'],index=[1,2,3]) 
+df.plot.bar()  
+print("Chat history Overall Rated As", end = " ")
+if sentiment_dict['compound'] >= 0.05:
+    print("Positive") 
+elif sentiment_dict['compound'] <= - 0.05:
+    print("Negative")
+else:
+    print("Neutral")
